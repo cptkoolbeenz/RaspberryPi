@@ -2,7 +2,7 @@
 import os
 import time
 import sys
-import thread
+import _thread
 from ctypes import *
 keyboard = CDLL('./lib/libarducam_keyboard.so')
 arducam_vcm =CDLL('./lib/libarducam_vcm.so')
@@ -12,9 +12,9 @@ SAVE    = 115
 focus_val = 512;
 step = 10
 def run_camera(name):
-    os.system("raspistill -t 0")
+    os.system("raspistill -t 0 -p 0,0,800,600")
 if __name__ == "__main__":
-    thread.start_new_thread(run_camera, ("run_camera",))
+    _thread.start_new_thread(run_camera, ("run_camera",))
     #vcm init
     arducam_vcm.vcm_init()
    # camera = picamera.PiCamera()
